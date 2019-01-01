@@ -41,6 +41,8 @@ days = [d for d in days if '2018' in d.date]
 </details>
 
 
+
+
 Here is what some of the raw JSON data coming from the Moment app looks like:
 
 <details>
