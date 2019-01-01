@@ -101,7 +101,7 @@ for k, v in sorted(hours_to_num_days.items()):
     Between 8.0 and 9.0 hours of usage: 1 days
 
 
-It looks like I spent an average of about 2 hours and 6 minutes on my phone each day, with a large standard deviation of 1 hour and 2 minutes. This is slightly lower than the average time per day spent on their phones by American adults, which comes in at 2 hours and 51 minutes (source: https://hackernoon.com/how-much-time-do-people-spend-on-their-mobile-phones-in-2017-e5f90a0b10a6). 
+It looks like I spent an average of about 2 hours and 6 minutes on my phone each day, with a large standard deviation of 1 hour and 2 minutes. This is slightly lower than the [average time per day](https://hackernoon.com/how-much-time-do-people-spend-on-their-mobile-phones-in-2017-e5f90a0b10a6) spent on their phones by American adults, which comes in at 2 hours and 51 minutes. 
 
 In other words, I spent about 8.75% of my entire day on my phone. If you only consider waking hours and assume 8 hours of sleep per day, then I spent about 13% of my waking hours using my phone each day. Translated to a year, this means I spent a whopping 766.25 hours on my phone in 2018, or 31.93 days - more than an entire month! 
 
