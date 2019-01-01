@@ -114,6 +114,8 @@ Another interesting thing to look at is the variability in my phone usage. Most 
 
 Let's look at some more data, such as whether there's a difference between weekdays and weekends.
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 # separate weekdays and weekends, and plot each
@@ -142,6 +144,7 @@ plt.grid(True)
 plt.show()
 
 ```
+</details>
 
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
@@ -153,6 +156,8 @@ plt.show()
 
 This was really interesting to me - the mean and standard deviations for my weekend and weekday phone usage is essentially the same, and the distributions take on basically the same shape, indicating that there's essentially no difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, as I have more time since I don't have class or work. Next, lets see if there's any particular difference in phone usage on different days of the week, different weeks, and different months.
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 # separate each day of the week, and plot each.
@@ -193,6 +198,7 @@ plt.ylabel('Average Phone Usage')
 plt.xlabel('Day of Week')
 plt.show()
 ```
+</details>
 
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
@@ -222,8 +228,6 @@ plt.show()
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
 
 
-    [123.89830508474576, 138.72881355932202, 134.5185185185185, 114.08333333333333, 115.41666666666667, 139.64583333333334, 114.52083333333333]
-
 
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
@@ -231,6 +235,8 @@ plt.show()
 
 We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall though, we can see that each day's distribution is quite similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 # extract weeks from the year by sorting days and going by sevens
@@ -258,6 +264,7 @@ plt.show()
 max_weekly, min_weekly = max(weekly_usages), min(weekly_usages)
 print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(max_weekly, min_weekly))
 ```
+</details>
 
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
@@ -272,6 +279,8 @@ print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format
 
 This is pretty interesting - it looks like my phone usage clustered around the 700-900 minute range for many weeks, with frequent spikes up to the 1100+ minute range in a couple of the weeks. My highest-usage week was a whopping 1685 minutes, which 28 hours, or more than an entire day of the week spent solely on my phone. Finally, let's move on to monthly usage.
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 # parse months out of dates, and get those days corresponding to the month
@@ -307,7 +316,7 @@ def plot(month, mins):
 plot(most_use_month, most_use_mins)
 plot(least_use_month, least_use_mins)
 ```
-
+</details>
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
 
