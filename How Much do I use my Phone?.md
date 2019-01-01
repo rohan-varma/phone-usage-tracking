@@ -3,11 +3,7 @@
 
 Towards the end of 2017, I started using an iOS app called [Moment](https://inthemoment.io/), which tracks how much time you spent on your phone each day and how many different times you pick it up as well. Through using this application for the year of 2018 and poking around in the app for a way to export my day-by-day data, I was able to obtain a [JSON file](https://github.com/rohan-varma/phone-usage-tracking/blob/master/data/moment.json) consisting of my phone usage time and number of pickups for every day of the year.
 
-I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis. The code cells are collapsed so the reader can simply browse through the graphs and conclusions, but can be expanded if you're interested in the data munging needed to come up with the analysis.
-
-
-<details>
-  <summary>Click to expand code block</summary>
+I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis.
 
 ```python
 # imports
@@ -38,28 +34,19 @@ days = [Day(d) for d in day_data]
 # filter out non 2018
 days = [d for d in days if '2018' in d.date]
 ```
-</details>
-
-
 
 <br />
 Here is what some of the raw JSON data coming from the Moment app looks like:
 
-<details>
-  <summary>Click to expand code block</summary>
-
 ```python
 print(day_data[0])
 ```
-</details>
 
-    {'pickupCount': 69, 'pickups': [], 'date': '2018-12-30T00:00:00+11:00', 'minuteCount': 181, 'appUsages': [], 'sessions': []}
+    {'pickupCount': 69, 'pickups': [], 'date': '2018-12-30T00:00:00+11:00', 
+    'minuteCount': 181, 'appUsages': [], 'sessions': []}
 
 
 To attempt to understand the overall data, we can find the mean and standard deviation of how many minutes per day I used my phone, as well as plot a histogram. 
-
-<details>
-  <summary>Click to expand code block</summary>
 
 ```python
 minute_data = [d.minutes for d in days]
@@ -84,10 +71,8 @@ for k, v in sorted(hours_to_num_days.items()):
     print('Between {0} and {1} hours of usage: {2} days'.format(k[0]/60, k[1]/60, int(v)))
 
 ```
-</details>
 
-
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
 
 
     Between 0.0 and 1.0 hours of usage: 33 days
@@ -109,12 +94,10 @@ Another interesting thing to look at is the variability in my phone usage. Most 
 
 Let's look at some more data, such as whether there's a difference between weekdays and weekends.
 
-<details>
-  <summary>Click to expand code block</summary>
-
 ```python
 # separate weekdays and weekends, and plot each
-weekdays, weekends = [d.minutes for d in days if d.is_weekday], [d.minutes for d in days if not d.is_weekday]
+weekdays = [d.minutes for d in days if d.is_weekday]
+weekends = [d.minutes for d in days if not d.is_weekday]
 weekday_mean, weekend_mean = np.mean(weekdays), np.mean(weekends)
 weekday_std, weekend_std = np.std(weekdays), np.std(weekends)
 
@@ -139,20 +122,17 @@ plt.grid(True)
 plt.show()
 
 ```
-</details>
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
 
 
 This was really interesting to me - the mean and standard deviations for my weekend and weekday phone usage is essentially the same, and the distributions take on basically the same shape, indicating that there's essentially no difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, as I have more time since I don't have class or work. Next, lets see if there's any particular difference in phone usage on different days of the week, different weeks, and different months.
 
-<details>
-  <summary>Click to expand code block</summary>
 
 ```python
 # separate each day of the week, and plot each.
@@ -193,45 +173,42 @@ plt.ylabel('Average Phone Usage')
 plt.xlabel('Day of Week')
 plt.show()
 ```
-</details>
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
-
-
-
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_2.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_1.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_3.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_2.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_4.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_3.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_5.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_4.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_5.png)
+
+
+
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
 
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
 
 
 We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall though, we can see that each day's distribution is quite similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
 
-<details>
-  <summary>Click to expand code block</summary>
 
 ```python
 # extract weeks from the year by sorting days and going by sevens
@@ -252,21 +229,22 @@ plt.title('Weekly Phone Usage Distribution')
 plt.xticks(bins)
 plt.ylabel('Frequency (# of Weeks)')
 plt.xlabel('Weekly Phone Usage Time')
-plt.text(950, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(np.mean(weekly_usages), np.std(weekly_usages)))
+plt.text(950, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(
+	np.mean(weekly_usages), np.std(weekly_usages)))
 plt.grid(True)
 plt.show()
 
 max_weekly, min_weekly = max(weekly_usages), min(weekly_usages)
-print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(max_weekly, min_weekly))
+print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(
+max_weekly, min_weekly))
 ```
-</details>
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_1.png)
 
 
     1685 minutes in highest-usage week, 580 minutes in lowest-usage week
@@ -274,13 +252,12 @@ print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format
 
 This is pretty interesting - it looks like my phone usage clustered around the 700-900 minute range for many weeks, with frequent spikes up to the 1100+ minute range in a couple of the weeks. My highest-usage week was a whopping 1685 minutes, which 28 hours, or more than an entire day of the week spent solely on my phone. Finally, let's move on to monthly usage.
 
-<details>
-  <summary>Click to expand code block</summary>
 
 ```python
 # parse months out of dates, and get those days corresponding to the month
 months = list(set(["-".join(day.date.split("-")[0:2]) for day in ordered_days]))
-month_to_days = {int(month.split("-")[1]): [day for day in ordered_days if month in day.date] for month in months}
+month_to_days = {int(month.split("-")[1]): 
+	[day for day in ordered_days if month in day.date] for month in months}
 
 # plot bar graph of monthly means
 monthly_means = [np.mean([day.minutes for day in li]) for li in list(month_to_days.values())]
@@ -295,7 +272,8 @@ plt.show()
 most_use_month, least_use_month = np.argmax(monthly_means) + 1, np.argmin(monthly_means) + 1
 
 most_use_days, least_use_days = month_to_days[most_use_month], month_to_days[least_use_month]
-most_use_mins, least_use_mins = [day.minutes for day in most_use_days], [day.minutes for day in least_use_days]
+most_use_mins = [day.minutes for day in most_use_days]
+least_use_mins = [day.minutes for day in least_use_days]
 
 def plot(month, mins):    
     bins = [i for i in range(0, max(mins) + 60, 60)]
@@ -311,17 +289,16 @@ def plot(month, mins):
 plot(most_use_month, most_use_mins)
 plot(least_use_month, least_use_mins)
 ```
-</details>
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
-
-
-
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_1.png)
+
+
+
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
 
 
 It looks like my monthly phone usage was mostly consistent, usually hovering around the slightly above two hour mark, with a dip during the summer months and an increase during April and December. Over April, I used my phone for slightly over three hours a day on average (nearly 19% of my waking hours!) while using my phone for 1 hour and 43 minutes, or 10.7% of my waking hours, in the least-used month of August.
