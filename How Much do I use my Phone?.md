@@ -8,17 +8,6 @@ I decided to do some exploring to figure out just how much I've been using my ph
 
 <details>
   <summary>Click to expand!</summary>
-  
-  ```javascript
-    function whatIsLove() {
-      console.log('Baby Don't hurt me. Don't hurt me');
-      return 'No more';
-    }
-  ```
-</details>
-
-<details>
-  <summary>Click to expand!</summary>
 
 ```python
 # imports
@@ -44,6 +33,8 @@ class Day:
 ```
 </details>
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 # open and deserialize json, convert into day objects
@@ -55,19 +46,25 @@ days = [Day(d) for d in day_data]
 # filter out non 2018
 days = [d for d in days if '2018' in d.date]
 ```
+</details>
 
 Here is what some of the raw JSON data coming from the Moment app looks like:
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 print(day_data[0])
 ```
+</details>
 
     {'pickupCount': 69, 'pickups': [], 'date': '2018-12-30T00:00:00+11:00', 'minuteCount': 181, 'appUsages': [], 'sessions': []}
 
 
 To attempt to understand the overall data, we can find the mean and standard deviation of how many minutes per day I used my phone, as well as plot a histogram. 
 
+<details>
+  <summary>Click to expand!</summary>
 
 ```python
 minute_data = [d.minutes for d in days]
@@ -92,6 +89,7 @@ for k, v in sorted(hours_to_num_days.items()):
     print('Between {0} and {1} hours of usage: {2} days'.format(k[0]/60, k[1]/60, int(v)))
 
 ```
+</details>
 
 
 ![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
