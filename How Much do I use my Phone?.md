@@ -28,15 +28,7 @@ class Day:
 
     def __repr__(self):
         return 'minutes: {0}, pickups: {1}, date: {2}'.format(self.minutes, self.pickups, self.date)
-    
-    
-```
-</details>
 
-<details>
-  <summary>Click to expand code block</summary>
-
-```python
 # open and deserialize json, convert into day objects
 with open('data/moment.json') as f:
 	data = json.load(f)
