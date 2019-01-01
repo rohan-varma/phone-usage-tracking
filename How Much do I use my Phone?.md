@@ -6,6 +6,20 @@ Towards the end of 2017, I started using an iOS app called [Moment](https://inth
 I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis. The code cells are collapsed so the reader can simply browse through the graphs and conclusions, but can be expanded if you're interested in the data munging needed to come up with the analysis.
 
 
+<details>
+  <summary>Click to expand!</summary>
+  
+  ```javascript
+    function whatIsLove() {
+      console.log('Baby Don't hurt me. Don't hurt me');
+      return 'No more';
+    }
+  ```
+</details>
+
+<details>
+  <summary>Click to expand!</summary>
+
 ```python
 # imports
 import json
@@ -28,6 +42,7 @@ class Day:
     
     
 ```
+</details>
 
 
 ```python
@@ -318,8 +333,3 @@ The data indicates that I sure do use my phone a lot, and it occupies a pretty s
 The overall takeaway for me is to think of my phone more as a tool, instead of as a distraction for when I'm bored. Phones and applications can be incredibly useful in keeping us connected with our friends and family, getting from place to place, learning new things, or capturing incredible moments, but can also take away from the present moment. 
 
 In 2019, I'm going to make a conscious effort to simply note when I use my phone immediately when boredom presents itself, such as during a long car ride, waiting for an elevator, or even just walking from place to place. Hopefully, this will make me more mindful when I use my phone to distract myself from the present moment, and in time, I can learn to turn off this deeply ingrained habit. Here's to being more present in 2019.
-
-
-```python
-
-```
